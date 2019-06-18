@@ -10,15 +10,15 @@ var local = {
     ],
 
     prices: [
-        { component: "Monitor GPRS 3000", price: 200 },
-        { component: "Motherboard ASUS 1500", price: 120 },
-        { component: "Monitor ASC 543", price: 250 },
-        { component: "Motherboard ASUS 1200", price: 100 },
-        { component: "Motherboard MZI", price: 30 },
-        { component: "HDD Toyiva", price: 90 },
-        { component: "HDD Wezter Dishital", price: 75 },
-        { component: "RAM Quinston", price: 110 },
-        { component: "RAM Quinston Fury", price: 230 }
+        { id: "0001", component: "Monitor GPRS 3000", price: 200 },
+        { id: "0002", component: "Motherboard ASUS 1500", price: 120 },
+        { id: "0003", component: "Monitor ASC 543", price: 250 },
+        { id: "0004", component: "Motherboard ASUS 1200", price: 100 },
+        { id: "0005", component: "Motherboard MZI", price: 30 },
+        { id: "0006", component: "HDD Toyiva", price: 90 },
+        { id: "0007", component: "HDD Wezter Dishital", price: 75 },
+        { id: "0008", component: "RAM Quinston", price: 110 },
+        { id: "0009", component: "RAM Quinston Fury", price: 230 }
       ],
 
     offices: ['Centro', 'Caballito'],  
@@ -41,14 +41,14 @@ const machinePrice = sale => {
   return machinePrice
 }
 
+console.log(machinePrice(["Monitor ASC 543","Motherboard ASUS 1200" ]))
+
 // sale no refiere al array SALES, es un parametro para identificar cada venta
 //e es cada elemento del array, o sea cada componente
 
 let product = ["Monitor ASC 543" ,  "Motherboard ASUS 1200"]
 
 console.log(`El precio total de ${product} es de ARS ${machinePrice(product)}`)
-
-console.log(machinePrice(["Monitor ASC 543","Motherboard ASUS 1200" ]))
 
 // pensar en cómo hacer para que imprima el precio de cada uno de los componentes - en el caso de que haya más de uno
 
@@ -73,15 +73,24 @@ const componentsSoldCount = (e) => {
 }
 console.log(componentsSoldCount("Monitor GPRS 3000"))
 
+
 /* en esta función recorrí la lista de ventas, por cada elemento (sale/venta) recorre el array de componentes
 vendidos, y comparo el nombre del componente (string) con el elemento que estaba buscando (e), y por cada vez que
 aparezca, se incrementa en un numero */ 
 
-/* esto no funciona. revisar el string template
-let componente = ["Monitor GPRS 3000"]
+let component = "Monitor GPRS 3000"
 
-console.log(`El componente ${componente} fue vendido ${componentsSoldCount(componente)} veces`)
+// la funcion espera que le pase como parametro un string asi que a esta variable tenia que igualarla a un string
+
+console.log(`El componente ${component} fue vendido ${componentsSoldCount(component)} veces`)
+
+
+/* 3) vendedoraDelMes(mes, anio), se le pasa dos parámetros numéricos, (mes, anio) y devuelve el nombre 
+de la vendedora que más vendió en plata en el mes. O sea no cantidad de ventas, sino importe total de las ventas. 
+El importe de una venta es el que indica la función precioMaquina. El mes es un número entero que va desde el 1 (enero
+hasta el 12 (diciembre).
+
+console.log( vendedoraDelMes(1, 2019) ); // "Ada" (vendio por $670, una máquina de $320 y otra de $350)
 */
-
 
 
