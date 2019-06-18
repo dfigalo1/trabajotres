@@ -2,11 +2,11 @@ var local = {
     seller: ["Ada", "Grace", "Hedy", "Sheryl"],
 
     sales: [
-        { date: new Date(2019, 1, 4), sellingName: "Grace", components: ["Monitor GPRS 3000", "Motherboard ASUS 1500"] },
-        { date: new Date(2019, 0, 1), sellingName: "Ada", components: ["Monitor GPRS 3000", "Motherboard ASUS 1500"] },
-        { date: new Date(2019, 0, 2), sellingName: "Grace", components: ["Monitor ASC 543", "Motherboard MZI"] },
-        { date: new Date(2019, 0, 10), sellingName: "Ada", components: ["Monitor ASC 543", "Motherboard ASUS 1200"] },
-        { date: new Date(2019, 0, 12), sellingName: "Grace", components: ["Monitor GPRS 3000", "Motherboard ASUS 1200"] }
+        { date: new Date(2019, 1, 4), sellerName: "Grace", components: ["Monitor GPRS 3000", "Motherboard ASUS 1500"] },
+        { date: new Date(2019, 0, 1), sellerName: "Ada", components: ["Monitor GPRS 3000", "Motherboard ASUS 1500"] },
+        { date: new Date(2019, 0, 2), sellerName: "Grace", components: ["Monitor ASC 543", "Motherboard MZI"] },
+        { date: new Date(2019, 0, 10), sellerName: "Ada", components: ["Monitor ASC 543", "Motherboard ASUS 1200"] },
+        { date: new Date(2019, 0, 12), sellerName: "Grace", components: ["Monitor GPRS 3000", "Motherboard ASUS 1200"] }
     ],
 
     prices: [
@@ -41,11 +41,10 @@ const machinePrice = sale => {
   return machinePrice
 }
 
-// sale no refiere al array SALES, es un parametro para identificar cada ventaS
+// sale no refiere al array SALES, es un parametro para identificar cada venta
 //e es cada elemento del array, o sea cada componente
 
- let product = ["Monitor ASC 543" ,  "Motherboard ASUS 1200"]
- // sirve para el string template - preguntar si está bien
+let product = ["Monitor ASC 543" ,  "Motherboard ASUS 1200"]
 
 console.log(`El precio total de ${product} es de ARS ${machinePrice(product)}`)
 
@@ -60,5 +59,29 @@ console.log(machinePrice(["Monitor ASC 543","Motherboard ASUS 1200" ]))
 console.log( cantidadVentasComponente("Monitor ASC 543") ); // 2
 
 */
+
+const componentsSoldCount = (e) => {
+  let count = 0 
+  local.sales.forEach(sale => { 
+    sale.components.forEach(componentName => { 
+      if(componentName === e){
+        count++
+      }
+    })
+  })
+  return count
+}
+console.log(componentsSoldCount("Monitor GPRS 3000"))
+
+/* en esta función recorrí la lista de ventas, por cada elemento (sale/venta) recorre el array de componentes
+vendidos, y comparo el nombre del componente (string) con el elemento que estaba buscando (e), y por cada vez que
+aparezca, se incrementa en un numero */ 
+
+/* esto no funciona. revisar el string template
+let componente = ["Monitor GPRS 3000"]
+
+console.log(`El componente ${componente} fue vendido ${componentsSoldCount(componente)} veces`)
+*/
+
 
 
