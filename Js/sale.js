@@ -1,5 +1,5 @@
 var local = {
-    seller: ["Ada", "Grace", "Hedy", "Sheryl"],
+    sellers: ["Ada", "Grace", "Hedy", "Sheryl"],
 
     sales: [
         { date: new Date(2019, 1, 4), sellerName: "Grace", components: ["Monitor GPRS 3000", "Motherboard ASUS 1500"] },
@@ -94,3 +94,19 @@ console.log( vendedoraDelMes(1, 2019) ); // "Ada" (vendio por $670, una máquina
 */
 
 
+
+// 4) ventas de un mes - ya anda!
+
+const ventasMes = (month, year) => {
+  let ventasMes = 0;
+  for (let i = 0; i < local.sales.length; i++) {
+      if ((month == (local.sales[i].date.getMonth() + 1)) && (year == local.sales[i].date.getFullYear())) {
+          ventasMes += machinePrice(local.sales[i].components);
+      }
+  }
+  return ventasMes
+}
+
+console.log( ventasMes(1,2019) )
+
+console.log(`La suma de las ventas del mes dan ARS $${ventasMes(1,2019)} `)
