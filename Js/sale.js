@@ -95,18 +95,66 @@ console.log( vendedoraDelMes(1, 2019) ); // "Ada" (vendio por $670, una máquina
 
 
 
-// 4) ventas de un mes - ya anda!
-
-const ventasMes = (month, year) => {
-  let ventasMes = 0;
+// 4) ventas de un mes - devuelve el valor total en plata
+// RECORDAR mejorar este codigo - con un for each quizas
+const salesMonth = (month, year) => {
+  let salesMonth = 0;
   for (let i = 0; i < local.sales.length; i++) {
       if ((month == (local.sales[i].date.getMonth() + 1)) && (year == local.sales[i].date.getFullYear())) {
-          ventasMes += machinePrice(local.sales[i].components);
+          salesMonth += machinePrice(local.sales[i].components);
       }
   }
-  return ventasMes
+  return salesMonth
 }
 
-console.log( ventasMes(1,2019) )
+console.log(salesMonth(1, 2019))
 
-console.log(`La suma de las ventas del mes dan ARS $${ventasMes(1,2019)} `)
+console.log(`La suma de las ventas del mes dan ARS $${salesMonth(1,2019)} `)
+
+/* 6) componenteMasVendido(): Devuelve el nombre del componente que más ventas tuvo historicamente. 
+El dato de la cantidad de ventas es el que indica la función 2) componentsSoldCount
+Devuelve el NOMBRE
+
+*/
+
+// RECORDAR cambiar los nombres
+const mostSoldComponent = () => {
+ let componentSold = [] 
+ local.prices.map(({component}) => {
+  let algo = {componente: component, total: componentsSoldCount(component)}
+  componentSold.push(algo)
+})
+
+let aux = Math.max(...componentSold.map(({total}) => total))
+let componentefinal;
+componentSold.map(({componente,total}) =>{
+  if (aux === total) componentefinal = componente
+}) 
+
+console.log(componentefinal)
+}
+
+mostSoldComponent() 
+
+
+/* en esta funcion recorrimos el array de precios y buscamos el elemento componente. creamos un objeto nuevo
+en la variable algo a la cual le dimos dos propiedades, su nombre "component" y el total, que es la funcion que usamos
+para averiguar la cantidad de ventas que hubo por cada componente.(punto 2) 
+le pusheamos a componentSold el array que imprime el nombre del componente y la cantidad de veces vendido
+despues creamos una variable auxiliar en la que, con el metodo math.max resolvimos (resolvio mas bien) cual era
+el mayor en cantidad de ventas - esto imprime un numero, no el nombre.
+*/
+
+/* 7) huboVentas(mes, anio): que indica si hubo ventas en un mes determinado. El mes es un número entero que va desde
+ el 1 (enero) hasta el 12 (diciembre).
+
+console.log( huboVentas(3, 2019) ); // false
+*/
+
+const wereThereSales = (month, year) => {
+  return salesMonth(month, year) > 0;
+}
+
+console.log(wereThereSales(3, 2019));
+
+// como la existencia de los elementos es un true, no hacia falta ponerle un if/else
