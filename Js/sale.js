@@ -111,6 +111,25 @@ console.log(salesMonth(1, 2019))
 
 console.log(`La suma de las ventas del mes dan ARS $${salesMonth(1,2019)} `)
 
+// 5) ventasVendedora(nombre): Obtener las ventas totales (en plata) realizadas por una vendedora sin límite de fecha.
+
+
+const salesPerSeller = (name) => {
+  let totalSales = 0
+  local.sales.forEach(e => {
+    if (e.sellerName === name){
+      totalSales = totalSales + machinePrice(e.components)
+    }
+  })
+  return totalSales
+}
+
+let nameSeller = 'Grace'
+console.log(`La vendedora ${nameSeller} recaudó ARS ${salesPerSeller('Grace')} en ventas`)
+
+console.log(salesPerSeller('Grace'))
+
+
 /* 6) componenteMasVendido(): Devuelve el nombre del componente que más ventas tuvo historicamente. 
 El dato de la cantidad de ventas es el que indica la función 2) componentsSoldCount
 Devuelve el NOMBRE
