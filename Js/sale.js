@@ -158,3 +158,10 @@ const wereThereSales = (month, year) => {
 console.log(wereThereSales(3, 2019));
 
 // como la existencia de los elementos es un true, no hacia falta ponerle un if/else
+
+
+
+
+
+
+
