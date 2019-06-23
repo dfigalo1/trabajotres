@@ -24,5 +24,20 @@ time, mark, audio, video {
 .background {
 	background: url(../styles/images/background2.jpg) no-repeat center;
 	background-size: cover;
-	height: 60vh;
+	height: 50vh;
 }
+
+.container{
+        margin: 0 auto;
+        overflow: hidden;
+        width: 90%;
+        min-width: 600px;
+        max-width: 900px;
+      }
+      h1{
+          font-family: 'Montserrat';
+          font-weight: bold;
+          font-size: 40px;
+          text-align: center;
+          padding: 15px;
+      }
