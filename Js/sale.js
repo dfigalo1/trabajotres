@@ -25,12 +25,7 @@ var local = {
     };
 
 /* 1) precioMaquina(componentes): recibe un array de componentes y devuelve el precio de la máquina que se puede armar
- con esos componentes, que es la suma de los precios de cada componente incluido.
-
-console.log( precioMaquina(["Monitor GPRS 3000", "Motherboard ASUS 1500"]) ); // 320 
-($200 del monitor + $120 del motherboard)
-
-*/
+ con esos componentes */
 
 const machinePrice = sale => {
   let machinePrice = 0
@@ -50,14 +45,11 @@ let product = ["Monitor ASC 543" ,  "Motherboard ASUS 1200"]
 
 console.log(`El precio total de ${product} es de ARS ${machinePrice(product)}`)
 
-// pensar en cómo hacer para que imprima el precio de cada uno de los componentes - en el caso de que haya más de uno
 
 /* 2) cantidadVentasComponente(componente): recibe un componente y devuelve la cantidad de veces que fue vendido, o sea
  que formó parte de una máquina que se vendió. La lista de ventas no se pasa por parámetro, se asume que está 
  identificada por la variable ventas.
-
 console.log( cantidadVentasComponente("Monitor ASC 543") ); // 2
-
 */
 
 const componentsSoldCount = (e) => {
@@ -86,10 +78,7 @@ console.log(`El componente ${component} fue vendido ${componentsSoldCount(compon
 
 
 /* 3) vendedoraDelMes(mes, anio), se le pasa dos parámetros numéricos, (mes, anio) y devuelve el nombre 
-de la vendedora que más vendió en plata en el mes. O sea no cantidad de ventas, sino importe total de las ventas. 
-El importe de una venta es el que indica la función precioMaquina. El mes es un número entero que va desde el 1 (enero
-hasta el 12 (diciembre).
-
+de la vendedora que más vendió en plata en el mes.
 console.log( vendedoraDelMes(1, 2019) ); // "Ada" (vendio por $670, una máquina de $320 y otra de $350)
 */
 
@@ -111,8 +100,7 @@ console.log(salesMonth(1, 2019))
 
 console.log(`La suma de las ventas del mes dan ARS $${salesMonth(1,2019)} `)
 
-// 5) ventasVendedora(nombre): Obtener las ventas totales (en plata) realizadas por una vendedora sin límite de fecha.
-
+// 5) ventasVendedora(nombre): Obtener las ventas totales (en plata) realizadas por una vendedora
 
 const salesPerSeller = (name) => {
   let totalSales = 0
@@ -133,27 +121,26 @@ console.log(salesPerSeller('Grace'))
 /* 6) componenteMasVendido(): Devuelve el nombre del componente que más ventas tuvo historicamente. 
 El dato de la cantidad de ventas es el que indica la función 2) componentsSoldCount
 Devuelve el NOMBRE
-
 */
 
 // RECORDAR cambiar los nombres
 const mostSoldComponent = () => {
- let componentSold = [] 
- local.prices.map(({component}) => {
-  let algo = {componente: component, total: componentsSoldCount(component)}
-  componentSold.push(algo)
-})
-
-let aux = Math.max(...componentSold.map(({total}) => total))
-let componentefinal;
-componentSold.map(({componente,total}) =>{
-  if (aux === total) componentefinal = componente
-}) 
-
-console.log(componentefinal)
-}
-
-mostSoldComponent() 
+  let componentSold = [] 
+  local.prices.map(({component}) => {
+   let algo = {componente: component, total: componentsSoldCount(component)}
+   componentSold.push(algo)
+ })
+ 
+ let aux = Math.max(...componentSold.map(({total}) => total))
+ let componentefinal ;
+ componentSold.map(({componente,total}) =>{
+   if (aux === total) componentefinal = componente
+ }) 
+ 
+ console.log(componentefinal)
+ }
+ 
+ mostSoldComponent() 
 
 
 /* en esta funcion recorrimos el array de precios y buscamos el elemento componente. creamos un objeto nuevo
@@ -165,16 +152,13 @@ el mayor en cantidad de ventas - esto imprime un numero, no el nombre.
 */
 
 /* 7) huboVentas(mes, anio): que indica si hubo ventas en un mes determinado. El mes es un número entero que va desde
- el 1 (enero) hasta el 12 (diciembre).
-
-console.log( huboVentas(3, 2019) ); // false
-*/
+ el 1 (enero) hasta el 12 (diciembre).*/
 
 const wereThereSales = (month, year) => {
   return salesMonth(month, year) > 0;
 }
 
-console.log(wereThereSales(3, 2019));
+console.log('hubo ventas?:' , wereThereSales(3, 2019));
 
 // como la existencia de los elementos es un true, no hacia falta ponerle un if/else
 
