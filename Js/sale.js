@@ -194,6 +194,24 @@ console.log('hubo ventas?:' , wereThereSales(3, 2019));
 
 // como la existencia de los elementos es un true, no hacia falta ponerle un if/else
 
+// 10) render por mes: Muestra una lista ordenada del importe total vendido por cada mes/año
+// mejorar
+const renderPorMes = () => {
+    
+let meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+let mesesNum= [1,2,3,4,5,6,7,8,9,10,11,12]
+let porMes= 0 
+
+for (let i= 0; i< meses.length; i++) {
+  
+   let porMes= console.log('Total de '+ meses[i] + ': ' + salesMonth(mesesNum[i], 2019));
+}
+  return porMes   
+  
+}
+
+renderPorMes()
+
 
 
 
