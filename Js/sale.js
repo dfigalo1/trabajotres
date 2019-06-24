@@ -6,7 +6,7 @@ var local = {
   { date: new Date(2019, 0, 1), sellerName: "Ada", components: ["Monitor GPRS 3000", "Motherboard ASUS 1500"] , office: "Centro"},
   { date: new Date(2019, 0, 2), sellerName: "Grace", components: ["Monitor ASC 543", "Motherboard MZI"] , office: "Centro"},
   { date: new Date(2019, 0, 10), sellerName: "Ada", components: ["Monitor ASC 543", "Motherboard ASUS 1200"] , office: "Centro"},
-  { date: new Date(2019, 0, 12), sellerName: "Grace", components: ["Monitor GPRS 3000", "Motherboard ASUS 1200"], office: "Centro" }
+  { date: new Date(2019, 0, 12), sellerName: "Grace", components: ["Monitor GPRS 3000", "Motherboard ASUS 1200"], office: "Centro" },
   { date: new Date(2019, 2, 12), sellerName: "Hedy", components: ["Monitor GPRS 3000", "HDD Toyiva"], office: "Centro"},
   { date: new Date(2019, 2, 24), sellerNameme: "Sheryl", components: ["HDD Wezter Dishital", "Motherboard ASUS 1500"], office: "Caballito"},
   { date: new Date(2019, 2, 01), sellerName: "Ada", components: ["Motherboard MZI", "RAM Quinston Fury"], office: "Centro"},
@@ -116,7 +116,7 @@ console.log(salesMonth(1, 2019))
 console.log(`La suma de las ventas del mes dan ARS $${salesMonth(1,2019)} `)
 
 // 5) ventasVendedora(nombre): Obtener las ventas totales (en plata) realizadas por una vendedora
-
+/*
 const salesPerSeller = (name) => {
 let totalSales = 0
 local.sales.forEach(e => {
@@ -131,7 +131,24 @@ let nameSeller = 'Grace'
 console.log(`La vendedora ${nameSeller} recaudó ARS ${salesPerSeller('Grace')} en ventas`)
 
 console.log(salesPerSeller('Grace'))
+*/
 
+// acá junté la función ventas por sucursal y vendedora.
+
+const salesPerSellerOrOffice = (param) => {
+  let sellerOrOffice = 0
+  local.sales.forEach( e => {
+    if(e.sellerName === param || e.office === param){
+      let totalSales = machinePrice(e.components)
+      sellerOrOffice += totalSales
+    }
+  })
+  return sellerOrOffice
+ // console.log(sellerOrOffice)
+}
+
+salesPerSellerOrOffice("Caballito")
+console.log('Funcion ventas por sucursal y vendedora' , salesPerSellerOrOffice('Grace'))
 
 /* 6) componenteMasVendido(): Devuelve el nombre del componente que más ventas tuvo historicamente. 
 El dato de la cantidad de ventas es el que indica la función 2) componentsSoldCount
