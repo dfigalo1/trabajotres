@@ -39,63 +39,39 @@ var local = {
   offices: ['Centro', 'Caballito'],  
   };
 
-/* 1) precioMaquina(componentes): recibe un array de componentes y devuelve el precio de la máquina que se puede armar
-con esos componentes */
+// 1) precioMaquina(componentes)
 
 const machinePrice = sale => {
 let machinePrice = 0
 sale.forEach(e => {
-  const componentName = local.prices.find(({component}) => e === component)
+  const componentName = local.prices.find(({component}) => e === component) 
   machinePrice = machinePrice + componentName.price
 })
 return machinePrice
 }
 
-console.log(machinePrice(["Monitor ASC 543","Motherboard ASUS 1200" ]))
+//console.log(machinePrice(["Monitor ASC 543","Motherboard ASUS 1200" ]))
 
-// sale no refiere al array SALES, es un parametro para identificar cada venta
-//e es cada elemento del array, o sea cada componente
 
 let product = ["Monitor ASC 543" ,  "Motherboard ASUS 1200"]
-
 console.log(`El precio total de ${product} es de ARS ${machinePrice(product)}`)
 
 
-/* 2) cantidadVentasComponente(componente): recibe un componente y devuelve la cantidad de veces que fue vendido, o sea
-que formó parte de una máquina que se vendió. La lista de ventas no se pasa por parámetro, se asume que está 
-identificada por la variable ventas.
-console.log( cantidadVentasComponente("Monitor ASC 543") ); // 2
-*/
+// 2) cantidadVentasComponente(componente)
 
 const componentsSoldCount = (e) => {
 let count = 0 
 local.sales.forEach(sale => { 
-  sale.components.forEach(componentName => { 
-    if(componentName === e){
-      count++
-    }
-  })
-})
+  sale.components.forEach(componentName => { if(componentName === e){ count++ }})})
 return count
 }
-console.log(componentsSoldCount("Monitor GPRS 3000"))
-
-
-/* en esta función recorrí la lista de ventas, por cada elemento (sale/venta) recorre el array de componentes
-vendidos, y comparo el nombre del componente (string) con el elemento que estaba buscando (e), y por cada vez que
-aparezca, se incrementa en un numero */ 
+//console.log(componentsSoldCount("Monitor GPRS 3000"))
 
 let component = "Monitor GPRS 3000"
-
-// la funcion espera que le pase como parametro un string asi que a esta variable tenia que igualarla a un string
-
 console.log(`El componente ${component} fue vendido ${componentsSoldCount(component)} veces`)
 
 
-/* 3) vendedoraDelMes(mes, anio), se le pasa dos parámetros numéricos, (mes, anio) y devuelve el nombre 
-de la vendedora que más vendió en plata en el mes.
-console.log( vendedoraDelMes(1, 2019) ); // "Ada" (vendio por $670, una máquina de $320 y otra de $350)
-*/
+// 3) vendedoraDelMes(mes, anio)
 
 
 
@@ -112,28 +88,9 @@ return salesMonth
 }
 
 console.log(salesMonth(1, 2019))
-
 console.log(`La suma de las ventas del mes dan ARS $${salesMonth(1,2019)} `)
 
-// 5) ventasVendedora(nombre): Obtener las ventas totales (en plata) realizadas por una vendedora
-/*
-const salesPerSeller = (name) => {
-let totalSales = 0
-local.sales.forEach(e => {
-  if (e.sellerName === name){
-    totalSales = totalSales + machinePrice(e.components)
-  }
-})
-return totalSales
-}
-
-let nameSeller = 'Grace'
-console.log(`La vendedora ${nameSeller} recaudó ARS ${salesPerSeller('Grace')} en ventas`)
-
-console.log(salesPerSeller('Grace'))
-*/
-
-// acá junté la función ventas por sucursal y vendedora.
+// 5) ventasVendedora(nombre) y 8) ventasSucursal(sucursal)
 
 const salesPerSellerOrOffice = (param) => {
   let sellerOrOffice = 0
@@ -150,10 +107,7 @@ const salesPerSellerOrOffice = (param) => {
 salesPerSellerOrOffice("Caballito")
 console.log('Funcion ventas por sucursal y vendedora' , salesPerSellerOrOffice('Grace'))
 
-/* 6) componenteMasVendido(): Devuelve el nombre del componente que más ventas tuvo historicamente. 
-El dato de la cantidad de ventas es el que indica la función 2) componentsSoldCount
-Devuelve el NOMBRE
-*/
+// 6) componenteMasVendido()
 
 // RECORDAR cambiar los nombres
 const mostSoldComponent = () => {
@@ -174,17 +128,7 @@ console.log(componentefinal)
 
 mostSoldComponent() 
 
-
-/* en esta funcion recorrimos el array de precios y buscamos el elemento componente. creamos un objeto nuevo
-en la variable algo a la cual le dimos dos propiedades, su nombre "component" y el total, que es la funcion que usamos
-para averiguar la cantidad de ventas que hubo por cada componente.(punto 2) 
-le pusheamos a componentSold el array que imprime el nombre del componente y la cantidad de veces vendido
-despues creamos una variable auxiliar en la que, con el metodo math.max resolvimos (resolvio mas bien) cual era
-el mayor en cantidad de ventas - esto imprime un numero, no el nombre.
-*/
-
-/* 7) huboVentas(mes, anio): que indica si hubo ventas en un mes determinado. El mes es un número entero que va desde
-el 1 (enero) hasta el 12 (diciembre).*/
+// 7) huboVentas(mes, anio)
 
 const wereThereSales = (month, year) => {
 return salesMonth(month, year) > 0;
@@ -192,7 +136,7 @@ return salesMonth(month, year) > 0;
 
 console.log('hubo ventas?:' , wereThereSales(3, 2019));
 
-// como la existencia de los elementos es un true, no hacia falta ponerle un if/else
+// 9) sucursalDelMes(mes, anio)
 
 // 10) render por mes: Muestra una lista ordenada del importe total vendido por cada mes/año
 // mejorar
@@ -212,6 +156,9 @@ for (let i= 0; i< meses.length; i++) {
 
 renderPorMes()
 
+// 11) renderPorSucursal()
+
+// 12) render()
 
 
 
