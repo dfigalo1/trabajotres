@@ -1,39 +1,54 @@
 var local = {
-    sellers: ["Ada", "Grace", "Hedy", "Sheryl"],
+  sellers: ["Ada", "Grace", "Hedy", "Sheryl"],
 
-    sales: [
-        { date: new Date(2019, 1, 4), sellerName: "Grace", components: ["Monitor GPRS 3000", "Motherboard ASUS 1500"] },
-        { date: new Date(2019, 0, 1), sellerName: "Ada", components: ["Monitor GPRS 3000", "Motherboard ASUS 1500"] },
-        { date: new Date(2019, 0, 2), sellerName: "Grace", components: ["Monitor ASC 543", "Motherboard MZI"] },
-        { date: new Date(2019, 0, 10), sellerName: "Ada", components: ["Monitor ASC 543", "Motherboard ASUS 1200"] },
-        { date: new Date(2019, 0, 12), sellerName: "Grace", components: ["Monitor GPRS 3000", "Motherboard ASUS 1200"] }
+  sales: [
+  { date: new Date(2019, 1, 4), sellerName: "Grace", components: ["Monitor GPRS 3000", "Motherboard ASUS 1500"] , office: "Centro"},
+  { date: new Date(2019, 0, 1), sellerName: "Ada", components: ["Monitor GPRS 3000", "Motherboard ASUS 1500"] , office: "Centro"},
+  { date: new Date(2019, 0, 2), sellerName: "Grace", components: ["Monitor ASC 543", "Motherboard MZI"] , office: "Centro"},
+  { date: new Date(2019, 0, 10), sellerName: "Ada", components: ["Monitor ASC 543", "Motherboard ASUS 1200"] , office: "Centro"},
+  { date: new Date(2019, 0, 12), sellerName: "Grace", components: ["Monitor GPRS 3000", "Motherboard ASUS 1200"], office: "Centro" }
+  { date: new Date(2019, 2, 12), sellerName: "Hedy", components: ["Monitor GPRS 3000", "HDD Toyiva"], office: "Centro"},
+  { date: new Date(2019, 2, 24), sellerNameme: "Sheryl", components: ["HDD Wezter Dishital", "Motherboard ASUS 1500"], office: "Caballito"},
+  { date: new Date(2019, 2, 01), sellerName: "Ada", components: ["Motherboard MZI", "RAM Quinston Fury"], office: "Centro"},
+  { date: new Date(2019, 2, 11), sellerName: "Grace", components: ["Monitor ASC 543", "RAM Quinston"], office: "Caballito"},
+  { date: new Date(2019, 2, 15), sellerName: "Ada", components: ["Motherboard ASUS 1200", "RAM Quinston Fury"], office: "Centro"},
+  { date: new Date(2019, 2, 12), sellerName: "Hedy", components: ["Motherboard ASUS 1500", "HDD Toyiva"], office: "Caballito"},
+  { date: new Date(2019, 2, 21), sellerName: "Grace", components: ["Motherboard MZI", "RAM Quinston"], office: "Centro"},
+  { date: new Date(2019, 2, 08), sellerName: "Sheryl", components: ["Monitor ASC 543", "HDD Wezter Dishital"], office: "Centro"},
+  { date: new Date(2019, 2, 16), sellerName: "Sheryl", components: ["Monitor GPRS 3000", "RAM Quinston Fury"], office: "Centro"},
+  { date: new Date(2019, 2, 27), sellerName: "Hedy", components: ["Motherboard ASUS 1200", "HDD Toyiva"], office: "Caballito"},
+  { date: new Date(2019, 2, 22), sellerName: "Grace", components: ["Monitor ASC 543", "HDD Wezter Dishital"], office: "Centro"},
+  { date: new Date(2019, 2, 05), sellerName: "Ada", components: ["Motherboard ASUS 1500", "RAM Quinston"], office: "Centro"},
+  { date: new Date(2019, 2, 01), sellerName: "Grace", components: ["Motherboard MZI", "HDD Wezter Dishital"], office: "Centro"},
+  { date: new Date(2019, 2, 07), sellerName: "Sheryl", components: ["Monitor GPRS 3000", "RAM Quinston"], office: "Centro"},
+  { date: new Date(2019, 2, 14), sellerName: "Ada", components: ["Motherboard ASUS 1200", "HDD Toyiva"], office: "Centro"}
+  ],
+
+  prices: [
+    { id: "0001", component: "Monitor GPRS 3000", price: 200 },
+    { id: "0002", component: "Motherboard ASUS 1500", price: 120 },
+    { id: "0003", component: "Monitor ASC 543", price: 250 },
+    { id: "0004", component: "Motherboard ASUS 1200", price: 100 },
+    { id: "0005", component: "Motherboard MZI", price: 30 },
+    { id: "0006", component: "HDD Toyiva", price: 90 },
+    { id: "0007", component: "HDD Wezter Dishital", price: 75 },
+    { id: "0008", component: "RAM Quinston", price: 110 },
+    { id: "0009", component: "RAM Quinston Fury", price: 230 }
     ],
 
-    prices: [
-        { id: "0001", component: "Monitor GPRS 3000", price: 200 },
-        { id: "0002", component: "Motherboard ASUS 1500", price: 120 },
-        { id: "0003", component: "Monitor ASC 543", price: 250 },
-        { id: "0004", component: "Motherboard ASUS 1200", price: 100 },
-        { id: "0005", component: "Motherboard MZI", price: 30 },
-        { id: "0006", component: "HDD Toyiva", price: 90 },
-        { id: "0007", component: "HDD Wezter Dishital", price: 75 },
-        { id: "0008", component: "RAM Quinston", price: 110 },
-        { id: "0009", component: "RAM Quinston Fury", price: 230 }
-      ],
-
-    offices: ['Centro', 'Caballito'],  
-    };
+  offices: ['Centro', 'Caballito'],  
+  };
 
 /* 1) precioMaquina(componentes): recibe un array de componentes y devuelve el precio de la máquina que se puede armar
- con esos componentes */
+con esos componentes */
 
 const machinePrice = sale => {
-  let machinePrice = 0
-  sale.forEach(e => {
-    const componentName = local.prices.find(({component}) => e === component)
-    machinePrice = machinePrice + componentName.price
-  })
-  return machinePrice
+let machinePrice = 0
+sale.forEach(e => {
+  const componentName = local.prices.find(({component}) => e === component)
+  machinePrice = machinePrice + componentName.price
+})
+return machinePrice
 }
 
 console.log(machinePrice(["Monitor ASC 543","Motherboard ASUS 1200" ]))
@@ -47,21 +62,21 @@ console.log(`El precio total de ${product} es de ARS ${machinePrice(product)}`)
 
 
 /* 2) cantidadVentasComponente(componente): recibe un componente y devuelve la cantidad de veces que fue vendido, o sea
- que formó parte de una máquina que se vendió. La lista de ventas no se pasa por parámetro, se asume que está 
- identificada por la variable ventas.
+que formó parte de una máquina que se vendió. La lista de ventas no se pasa por parámetro, se asume que está 
+identificada por la variable ventas.
 console.log( cantidadVentasComponente("Monitor ASC 543") ); // 2
 */
 
 const componentsSoldCount = (e) => {
-  let count = 0 
-  local.sales.forEach(sale => { 
-    sale.components.forEach(componentName => { 
-      if(componentName === e){
-        count++
-      }
-    })
+let count = 0 
+local.sales.forEach(sale => { 
+  sale.components.forEach(componentName => { 
+    if(componentName === e){
+      count++
+    }
   })
-  return count
+})
+return count
 }
 console.log(componentsSoldCount("Monitor GPRS 3000"))
 
@@ -87,13 +102,13 @@ console.log( vendedoraDelMes(1, 2019) ); // "Ada" (vendio por $670, una máquina
 // 4) ventas de un mes - devuelve el valor total en plata
 // RECORDAR mejorar este codigo - con un for each quizas
 const salesMonth = (month, year) => {
-  let salesMonth = 0;
-  for (let i = 0; i < local.sales.length; i++) {
-      if ((month == (local.sales[i].date.getMonth() + 1)) && (year == local.sales[i].date.getFullYear())) {
-          salesMonth += machinePrice(local.sales[i].components);
-      }
-  }
-  return salesMonth
+let salesMonth = 0;
+for (let i = 0; i < local.sales.length; i++) {
+    if ((month == (local.sales[i].date.getMonth() + 1)) && (year == local.sales[i].date.getFullYear())) {
+        salesMonth += machinePrice(local.sales[i].components);
+    }
+}
+return salesMonth
 }
 
 console.log(salesMonth(1, 2019))
@@ -103,13 +118,13 @@ console.log(`La suma de las ventas del mes dan ARS $${salesMonth(1,2019)} `)
 // 5) ventasVendedora(nombre): Obtener las ventas totales (en plata) realizadas por una vendedora
 
 const salesPerSeller = (name) => {
-  let totalSales = 0
-  local.sales.forEach(e => {
-    if (e.sellerName === name){
-      totalSales = totalSales + machinePrice(e.components)
-    }
-  })
-  return totalSales
+let totalSales = 0
+local.sales.forEach(e => {
+  if (e.sellerName === name){
+    totalSales = totalSales + machinePrice(e.components)
+  }
+})
+return totalSales
 }
 
 let nameSeller = 'Grace'
@@ -125,22 +140,22 @@ Devuelve el NOMBRE
 
 // RECORDAR cambiar los nombres
 const mostSoldComponent = () => {
-  let componentSold = [] 
-  local.prices.map(({component}) => {
-   let algo = {componente: component, total: componentsSoldCount(component)}
-   componentSold.push(algo)
- })
- 
- let aux = Math.max(...componentSold.map(({total}) => total))
- let componentefinal ;
- componentSold.map(({componente,total}) =>{
-   if (aux === total) componentefinal = componente
- }) 
- 
- console.log(componentefinal)
- }
- 
- mostSoldComponent() 
+let componentSold = [] 
+local.prices.map(({component}) => {
+ let algo = {componente: component, total: componentsSoldCount(component)}
+ componentSold.push(algo)
+})
+
+let aux = Math.max(...componentSold.map(({total}) => total))
+let componentefinal ;
+componentSold.map(({componente,total}) =>{
+ if (aux === total) componentefinal = componente
+}) 
+
+console.log(componentefinal)
+}
+
+mostSoldComponent() 
 
 
 /* en esta funcion recorrimos el array de precios y buscamos el elemento componente. creamos un objeto nuevo
@@ -152,10 +167,10 @@ el mayor en cantidad de ventas - esto imprime un numero, no el nombre.
 */
 
 /* 7) huboVentas(mes, anio): que indica si hubo ventas en un mes determinado. El mes es un número entero que va desde
- el 1 (enero) hasta el 12 (diciembre).*/
+el 1 (enero) hasta el 12 (diciembre).*/
 
 const wereThereSales = (month, year) => {
-  return salesMonth(month, year) > 0;
+return salesMonth(month, year) > 0;
 }
 
 console.log('hubo ventas?:' , wereThereSales(3, 2019));
