@@ -97,6 +97,20 @@ de la vendedora que más vendió en plata en el mes.
 console.log( vendedoraDelMes(1, 2019) ); // "Ada" (vendio por $670, una máquina de $320 y otra de $350)
 */
 
+const bestSellerMonth = (year, month) => {
+  let sellerName = []
+  local.sales.filter(e => {
+    let monthS = e.date.getMonth()
+    let yearS = e.date.getFullYear()
+    if(year === yearS && month === monthS){
+      sellerName.push(e.sellerName) 
+    }
+  })
+  sellerName.reduce((e, i) => { e === i })
+  return sellerName
+}
+
+console.log(bestSellerMonth(2019, 0))
 
 
 
@@ -194,6 +208,14 @@ return salesMonth(month, year) > 0;
 console.log('hubo ventas?:' , wereThereSales(3, 2019));
 
 // como la existencia de los elementos es un true, no hacia falta ponerle un if/else
+
+// 9) sucursalDelMes (mes, anio) devuelve el nombre de la sucursal que mas vendio
+
+const officeOfTheMonth = (month, year) => {
+  let officeName = ''
+
+
+}
 
 // 10) render por mes: Muestra una lista ordenada del importe total vendido por cada mes/año
 // mejorar
