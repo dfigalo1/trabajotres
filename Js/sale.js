@@ -99,6 +99,7 @@ console.log( vendedoraDelMes(1, 2019) ); // "Ada" (vendio por $670, una máquina
 
 
 
+
 // 4) ventas de un mes - devuelve el valor total en plata
 // RECORDAR mejorar este codigo - con un for each quizas
 const salesMonth = (month, year) => {
@@ -110,7 +111,7 @@ for (let i = 0; i < local.sales.length; i++) {
 }
 return salesMonth
 }
-
+ 
 console.log(salesMonth(1, 2019))
 
 console.log(`La suma de las ventas del mes dan ARS $${salesMonth(1,2019)} `)
@@ -159,17 +160,17 @@ Devuelve el NOMBRE
 const mostSoldComponent = () => {
 let componentSold = [] 
 local.prices.map(({component}) => {
- let algo = {componente: component, total: componentsSoldCount(component)}
- componentSold.push(algo)
+ let compObj = {componentString: component, total: componentsSoldCount(component)}
+ componentSold.push(compObj)
 })
 
 let aux = Math.max(...componentSold.map(({total}) => total))
-let componentefinal ;
-componentSold.map(({componente,total}) =>{
- if (aux === total) componentefinal = componente
+let finalComponent ;
+componentSold.map(({componentString, total}) =>{
+ if (aux === total) finalComponent = componentString
 }) 
 
-console.log(componentefinal)
+console.log(`El componente más vendido es ${finalComponent}`)
 }
 
 mostSoldComponent() 
@@ -196,22 +197,22 @@ console.log('hubo ventas?:' , wereThereSales(3, 2019));
 
 // 10) render por mes: Muestra una lista ordenada del importe total vendido por cada mes/año
 // mejorar
-const renderPorMes = () => {
+const renderPerMonth = () => {
     
-let meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-let mesesNum= [1,2,3,4,5,6,7,8,9,10,11,12]
-let porMes= 0 
+let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+let monthsNum = [1,2,3,4,5,6,7,8,9,10,11,12]
+let perMonth = 0 
 
-for (let i= 0; i< meses.length; i++) {
-  
-   let porMes= console.log('Total de '+ meses[i] + ': ' + salesMonth(mesesNum[i], 2019));
-}
-  return porMes   
-  
+for (let i= 0; i< months.length; i++) {
+  let perMonth = console.log('Total de '+ months[i] + ': ' + salesMonth(monthsNum[i], 2019)); }
+
+  return perMonth  
 }
 
-renderPorMes()
+renderPerMonth()
 
+
+ 
 
 
 
