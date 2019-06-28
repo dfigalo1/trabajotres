@@ -25,6 +25,13 @@
   height: 50vh;
 }
 
+body {
+  font-family: "Montserrat";
+  font-size: 16px;
+  color: #f3772e;
+  background: #030521;
+}
+
 .container {
   margin: 0 auto;
   overflow: hidden;
@@ -41,33 +48,25 @@ h1 {
   padding: 15px;
 }
 
-body {
-  font-family: "Montserrat",;
-  font-size: 16px;
-  color: rgb(243, 119, 46);
-  background:#030521;
-}
-p {
-  font-family: "Montserrat", sans-serif;
-  font-size: 16px;
-  color: rgb(243, 119, 46);
-
+.optionsMenu {
+  display: flex;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
-button{
+li, a {
   text-decoration: none;
-  font-weight: bold;
-  color: #1b1c2e;
+  list-style: none;
+  color: grey;
+  font-size: 10px;
+  display: block;
+}
+li:hover, a:hover {
+  color: white;
+}
+li i, a i {
+  display: block;
+  margin-left: 15px;
 }
 
-button:hover{
-  color: rgb(243, 119, 46);
-  background-color: #030521;
-}
-
-select{
-  font-family: "Montserrat", sans-serif;
-  text-decoration: none;
-  font-weight: bold;
-}
 /*# sourceMappingURL=home.css.map */
