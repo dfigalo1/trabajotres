@@ -248,12 +248,24 @@ let monthsNum = [1,2,3,4,5,6,7,8,9,10,11,12]
 let perMonth = 0 
 
 for (let i= 0; i < months.length; i++) {
-  let perMonth = console.log('Total de '+ months[i] + ': ' + salesMonth(monthsNum[i], 2019)); }
-
+  console.log(`Total de  ${months[i]} : $ ${salesMonth(monthsNum[i], 2019)}`) }
   return perMonth  
 }
 
 renderPerMonth()
+
+// 11) render por sucursal
+
+const renderPerOffice = () => {
+  let saleOffice
+  local.offices.forEach(office => {
+    saleOffice = salesPerSellerOrOffice(office)
+    console.log(`El importe total vendido en la sucursal de ${office} es: $${saleOffice}`)
+  })
+  return saleOffice
+}
+
+renderPerOffice()
 
 
  
