@@ -95,25 +95,28 @@ console.log(`El componente ${component} fue vendido ${componentsSoldCount(compon
 /* 3) vendedoraDelMes(mes, anio), se le pasa dos parámetros numéricos, (mes, anio) y devuelve el nombre 
 de la vendedora que más vendió en plata en el mes.
 console.log( vendedoraDelMes(1, 2019) ); // "Ada" (vendio por $670, una máquina de $320 y otra de $350)
-
+*/
+// e busca el string del nombre de la vendedora
+// i filtrea las ventas y saca tres datos de eso
 
 const sellerOfTheMonth = (month, year) => {
-  let totalSold = 0 //acumulador
-  let maxTotalSold = 0 //mayor de los acumuladores
-  let maxSellerName = '' // esto tiene que volver
-  local.sellers.map(function(employee){
-    totalSold = 0
-    local.sales.map(function(e){
-      if(salesMonth(month, year) && e.nameSeller === employee){
-        console.log(e);
-        
+  let countSeller = []
+  let sellerName
+  local.sellers.forEach(e => {
+    local.sales.filter(i => {
+      if(year === i.date.getFullYear() && month === i.date.getMonth() && e === i.sellerName){
+        countSeller.push(machinePrice(i.components))
+        let countMaxSeller = Math.max.apply(null, countSeller)
+        if(machinePrice(i.components) === countMaxSeller){
+          sellerName = e
+        }
       }
     })
-})
+  })
+  return sellerName
 }
+console.log(`La vendedora del mes es ${sellerOfTheMonth(1, 2019)}`)
 
-console.log(sellerOfTheMonth(1, 2019));
-*/
 
 // 4) ventas de un mes - devuelve el valor total en plata
 // RECORDAR mejorar este codigo - con un for each quizas
@@ -213,6 +216,8 @@ console.log('hubo ventas?:' , wereThereSales(3, 2019));
 // como la existencia de los elementos es un true, no hacia falta ponerle un if/else
 
 // 9) sucursalDelMes (mes, anio) devuelve el nombre de la sucursal que mas vendio
+// e busca el nombre de la oficina (como string)
+// j refiere a las ventas
 
 const bestOfficeMonth = (year, month) => {
   let counterOffice = []
