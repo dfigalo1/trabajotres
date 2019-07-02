@@ -222,6 +222,7 @@ const bestOfficeMonth = (year, month) => {
       if(year === j.date.getFullYear() && month === j.date.getMonth() && e === j.office){
         counterOffice.push(machinePrice(j.components))
         let countMaxOffice = Math.max.apply(null, counterOffice)
+        // el math max toma dos parametros y busca el mayor
         if(machinePrice(j.components) === countMaxOffice){
           officeName = e
         }
