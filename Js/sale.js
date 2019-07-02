@@ -95,40 +95,43 @@ console.log(`El componente ${component} fue vendido ${componentsSoldCount(compon
 /* 3) vendedoraDelMes(mes, anio), se le pasa dos parámetros numéricos, (mes, anio) y devuelve el nombre 
 de la vendedora que más vendió en plata en el mes.
 console.log( vendedoraDelMes(1, 2019) ); // "Ada" (vendio por $670, una máquina de $320 y otra de $350)
-*/
 
-const bestSellerMonth = (year, month) => {
-  let sellerName = []
-  local.sales.filter(e => {
-    let monthS = e.date.getMonth()
-    let yearS = e.date.getFullYear()
-    if(year === yearS && month === monthS){
-      sellerName.push(e.sellerName) 
-    }
-  })
-  sellerName.reduce((e, i) => { e === i })
-  return sellerName
+
+const sellerOfTheMonth = (month, year) => {
+  let totalSold = 0 //acumulador
+  let maxTotalSold = 0 //mayor de los acumuladores
+  let maxSellerName = '' // esto tiene que volver
+  local.sellers.map(function(employee){
+    totalSold = 0
+    local.sales.map(function(e){
+      if(salesMonth(month, year) && e.nameSeller === employee){
+        console.log(e);
+        
+      }
+    })
+})
 }
 
-console.log(bestSellerMonth(2019, 0))
-
-
+console.log(sellerOfTheMonth(1, 2019));
+*/
 
 // 4) ventas de un mes - devuelve el valor total en plata
 // RECORDAR mejorar este codigo - con un for each quizas
 const salesMonth = (month, year) => {
-let salesMonth = 0;
-for (let i = 0; i < local.sales.length; i++) {
-    if ((month == (local.sales[i].date.getMonth() + 1)) && (year == local.sales[i].date.getFullYear())) {
-        salesMonth += machinePrice(local.sales[i].components);
-    }
-}
-return salesMonth
-}
- 
-console.log(salesMonth(1, 2019))
+  let salesMonth = 0;
+  for (let i = 0; i < local.sales.length; i++) {
+      if ((month == (local.sales[i].date.getMonth() + 1)) && (year == local.sales[i].date.getFullYear())) {
+          salesMonth += machinePrice(local.sales[i].components);
+      }
+  }
+  return salesMonth
+  }
+  
 
-console.log(`La suma de las ventas del mes dan ARS $${salesMonth(1,2019)} `)
+
+ 
+console.log('Ventas de un mes' + salesMonth(1, 2019))
+
 
 // 5) ventasVendedora(nombre): Obtener las ventas totales (en plata) realizadas por una vendedora
 /*
@@ -211,11 +214,24 @@ console.log('hubo ventas?:' , wereThereSales(3, 2019));
 
 // 9) sucursalDelMes (mes, anio) devuelve el nombre de la sucursal que mas vendio
 
-const officeOfTheMonth = (month, year) => {
-  let officeName = ''
-
-
+const bestOfficeMonth = (year, month) => {
+  let counterOffice = []
+  let officeName
+  local.offices.forEach(e => {
+    local.sales.filter(j => {
+      if(year === j.date.getFullYear() && month === j.date.getMonth() && e === j.office){
+        counterOffice.push(machinePrice(j.components))
+        let countMaxOffice = Math.max.apply(null, counterOffice)
+        if(machinePrice(j.components) === countMaxOffice){
+          officeName = e
+        }
+      }
+    })
+  })
+  return officeName
 }
+
+console.log(`La oficina que más generó ganancias este mes fue la oficina de ${bestOfficeMonth(2019, 1)}`)
 
 // 10) render por mes: Muestra una lista ordenada del importe total vendido por cada mes/año
 // mejorar
@@ -225,7 +241,7 @@ let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'A
 let monthsNum = [1,2,3,4,5,6,7,8,9,10,11,12]
 let perMonth = 0 
 
-for (let i= 0; i< months.length; i++) {
+for (let i= 0; i < months.length; i++) {
   let perMonth = console.log('Total de '+ months[i] + ': ' + salesMonth(monthsNum[i], 2019)); }
 
   return perMonth  

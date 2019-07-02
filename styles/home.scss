@@ -1,43 +1,73 @@
 *{
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-}
-
-.background {
-	background: url(../styles/images/background2.jpg) no-repeat center;
-	background-size: cover;
-	height: 50vh;
-}
-
-.container{
-        margin: 0 auto;
-        overflow: hidden;
-        width: 90%;
-        min-width: 600px;
-        max-width: 900px;
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed, 
+  figure, figcaption, footer, header, hgroup, 
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+  }
+  }
+  
+  .background {
+    background: url(../styles/images/background2.jpg) no-repeat center;
+    background-size: cover;
+    height: 50vh;
+  }
+  
+  body {
+  font-family: "Montserrat",;
+  font-size: 16px;
+  color: rgb(243, 119, 46);
+  background:#030521;
+  } 
+  .container{
+    margin: 0 auto;
+    overflow: hidden;
+    width: 90%;
+    min-width: 600px;
+    max-width: 900px;
       }
-      h1{
-          font-family: 'Montserrat';
-          font-weight: bold;
-          font-size: 40px;
-          text-align: center;
-          padding: 15px;
+   
+    h1{
+    font-family: 'Montserrat';
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    padding: 15px;
+     }
+       
+    .optionsMenu {
+    display: flex;
+    margin-left: 10px;
+    margin-top: 10px;
+     }
+    
+  li,a {
+    text-decoration:none;
+    list-style: none;
+    color: grey;
+    font-size: 10px;
+    display:block;
+  
+    &:hover {
+      color:white;
+    }
+  
+    i{
+      display:block;
+      margin-left: 15px;
       }
+  }

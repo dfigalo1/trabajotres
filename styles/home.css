@@ -25,6 +25,13 @@
   height: 50vh;
 }
 
+body {
+  font-family: "Montserrat";
+  font-size: 16px;
+  color: #f3772e;
+  background: #030521;
+}
+
 .container {
   margin: 0 auto;
   overflow: hidden;
@@ -39,6 +46,27 @@ h1 {
   font-size: 40px;
   text-align: center;
   padding: 15px;
+}
+
+.optionsMenu {
+  display: flex;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+li, a {
+  text-decoration: none;
+  list-style: none;
+  color: grey;
+  font-size: 10px;
+  display: block;
+}
+li:hover, a:hover {
+  color: white;
+}
+li i, a i {
+  display: block;
+  margin-left: 15px;
 }
 
 /*# sourceMappingURL=home.css.map */
