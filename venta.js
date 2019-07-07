@@ -1,8 +1,8 @@
 
-// Variables de cada select y creacion de UL
- var listSelectOne,selectSeller,selectSucur,selectMonth,printUl
-// variable que guarda los resultados a imprimir
-var printAccion = []
+// // Variables de cada select y creacion de UL
+//  var listSelectOne,selectSeller,selectSucur,selectMonth,printUl
+// // variable que guarda los resultados a imprimir
+// var printAccion = []
 
 var local = {
   sellers: ["Ada", "Grace", "Hedy", "Sheryl"],
@@ -44,6 +44,7 @@ var local = {
 
   offices: ['Centro', 'Caballito'],  
   };
+
 
 // SELECT DE COMPONENTES (1)
 const selectComponent = () =>{
@@ -181,23 +182,22 @@ renderPorMes()
 
 
 // SE SUPONE QUE ES EL BOTON PERO NO FUNCA (ONCLICK)
-const calcular = () =>{
- let printAccion  = []
-  printAccion.push(local[listSelectOne.value])
-  printAccion.push(local[selectSeller.value])
-  printAccion.push(local[selectSucur.value])
-  printAccion.push(local[selectMonth.value])
-printUl = document.getElementById('printUl')
-printUl.innerHTML =''
+// const calcular = () =>{
+//  let printAccion  = []
+//   printAccion.push(local[listSelectOne.value])
+//   printAccion.push(local[selectSeller.value])
+//   printAccion.push(local[selectSucur.value])
+//   printAccion.push(local[selectMonth.value])
+// printUl = document.getElementById('printUl')
+// printUl.innerHTML =''
 
-printSelect();
-}
-// Imprime los selects
-const printSelect = () =>{
-  printAccion.map(function(item){
-    let li = document.createElement('li')
-    li.innerText = item.local
-    printUl.appendChild(li)
-  })
-}
-
+// printSelect();
+// }
+// // Imprime los selects
+// const printSelect = () =>{
+//   printAccion.map(function(item){
+//     let li = document.createElement('li')
+//     li.innerText = item.local
+//     printUl.appendChild(li)
+//   })
+// }

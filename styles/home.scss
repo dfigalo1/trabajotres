@@ -27,17 +27,50 @@ time, mark, audio, video {
 	height: 50vh;
 }
 
+body {
+font-family: "Montserrat",;
+font-size: 16px;
+color: rgb(243, 119, 46);
+background:#030521;
+} 
 .container{
-        margin: 0 auto;
-        overflow: hidden;
-        width: 90%;
-        min-width: 600px;
-        max-width: 900px;
-      }
-      h1{
-          font-family: 'Montserrat';
-          font-weight: bold;
-          font-size: 40px;
-          text-align: center;
-          padding: 15px;
-      }
+  margin: 0 auto;
+  overflow: hidden;
+  width: 90%;
+  min-width: 600px;
+  max-width: 900px;
+    }
+ 
+  h1{
+  font-family: 'Montserrat';
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+  padding: 15px;
+   }
+     
+  .optionsMenu {
+  display: flex;
+  margin-left: 10px;
+  margin-top: 10px;
+   }
+  
+li,a {
+  text-decoration:none;
+  list-style: none;
+  color: grey;
+  font-size: 10px;
+  display:block;
+
+  &:hover {
+    color:white;
+  }
+
+  i{
+    display:block;
+    margin-left: 15px;
+    }
+}
+      
+
+     
