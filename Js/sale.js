@@ -147,10 +147,8 @@ local.sales.forEach(e => {
 })
 return totalSales
 }
-
 let nameSeller = 'Grace'
 console.log(`La vendedora ${nameSeller} recaudó ARS ${salesPerSeller('Grace')} en ventas`)
-
 console.log(salesPerSeller('Grace'))
 */
 
@@ -267,6 +265,28 @@ const renderPerOffice = () => {
 
 renderPerOffice()
 
+/*
+let render = () =>{
+  console.log(`Las ventas por mes para el año en curso son `)
+  console.table(renderPerMonth(2019))
+  console.log(`El componente más vendido de la vida es ${mostSoldComponent(local.prices)}`)
+ // console.log(`La mejor empleada de la vida es ${bestEmployee()}`)
+  console.log(`Las ventas por sucursal son ARS`)
+  console.table(renderPerOffice(local.offices))
+} 
+render()
+
+
+const render = () => {
+  let month = new Date().getMonth()
+  console.log(`Reporte:
+  Ventas del mes: ${renderMonth()}
+  Ventas por sucursal: ${renderSubsidiary()}
+  Producto estrella: ${bestSellerComponent()}
+  Vendedora que más ingresos generó: ${bestSellerMonth(2019, month)}`)
+}
+
+render() */
 
  
 
