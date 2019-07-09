@@ -25,12 +25,29 @@
   height: 50vh;
 }
 
-.container {
+body {
+  font-family: "Montserrat";
+  font-size: 16px;
+  color: #f3772e;
+  background: #030521;
+}
+
+.footer {
   margin: 0 auto;
   overflow: hidden;
   width: 90%;
   min-width: 600px;
   max-width: 900px;
+}
+footer nav{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  clear: both;
+}
+
+footer .end-line{
+  display: none;
 }
 
 h1 {
@@ -40,5 +57,80 @@ h1 {
   text-align: center;
   padding: 15px;
 }
+
+.optionsMenu {
+  display: flex;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+button{
+  text-decoration: none;
+  font-weight: bold;
+  color: #1b1c2e;
+font-size: 14px;
+margin: 40px;     
+width: 100px; 
+text-align: center;    
+ 
+
+}
+
+button:hover{
+  color: rgb(243, 119, 46);
+  background-color: #030521;
+}
+
+select{
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* VER SI SE MANTIENE LI */
+
+li, a {
+  text-decoration: none;
+  list-style: none;
+  color: grey;
+  font-size: 10px;
+  display: block;
+}
+li:hover, a:hover {
+  color: white;
+}
+
+li i, a i {
+  display: block;
+  margin-left: 15px;
+}
+
+table {
+font-family: "Montserrat", sans-serif;
+font-size: 18px;
+margin: 40px;     
+width: 1260px; 
+text-align: center;    
+border-collapse: collapse; 
+}
+
+th {     
+font-size: 13px;     
+font-weight: normal;     
+padding: 8px;     
+background: rgb(203, 215, 255); 
+border-top: 4px solid #aabcfe;    
+border-bottom: 1px solid #fff;
+color: #030521;
+}
+
+td {
+padding: 8px;     
+background: #e8edff;     
+border-bottom: 1px solid #fff;
+color: #030521;    
+border-top: 1px solid transparent; 
+}
+
 
 /*# sourceMappingURL=home.css.map */

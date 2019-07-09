@@ -1,3 +1,4 @@
+
 // // Variables de cada select y creacion de UL
 //  var listSelectOne,selectSeller,selectSucur,selectMonth,printUl
 // // variable que guarda los resultados a imprimir
@@ -13,7 +14,7 @@ var local = {
   { date: new Date(2019, 0, 10), sellerName: "Ada", components: ["Monitor ASC 543", "Motherboard ASUS 1200"] , office: "Centro"},
   { date: new Date(2019, 0, 12), sellerName: "Grace", components: ["Monitor GPRS 3000", "Motherboard ASUS 1200"], office: "Centro" },
   { date: new Date(2019, 2, 12), sellerName: "Hedy", components: ["Monitor GPRS 3000", "HDD Toyiva"], office: "Centro"},
-  { date: new Date(2019, 2, 24), sellerNameme: "Sheryl", components: ["HDD Wezter Dishital", "Motherboard ASUS 1500"], office: "Caballito"},
+  { date: new Date(2019, 2, 24), sellerName: "Sheryl", components: ["HDD Wezter Dishital", "Motherboard ASUS 1500"], office: "Caballito"},
   { date: new Date(2019, 2, 01), sellerName: "Ada", components: ["Motherboard MZI", "RAM Quinston Fury"], office: "Centro"},
   { date: new Date(2019, 2, 11), sellerName: "Grace", components: ["Monitor ASC 543", "RAM Quinston"], office: "Caballito"},
   { date: new Date(2019, 2, 15), sellerName: "Ada", components: ["Motherboard ASUS 1200", "RAM Quinston Fury"], office: "Centro"},
@@ -44,14 +45,8 @@ var local = {
   offices: ['Centro', 'Caballito'],  
   };
 
-// arrayComponentes
-const componentArray = local.prices.map(({ component }) => component)
-
-
-
 
 // SELECT DE COMPONENTES (1)
-/*
 const selectComponent = () =>{
   let listSelectOne = document.getElementById('selectOne')
   listSelectOne.innerHTML = '' // lo vacio para que no se vuelva a imprimir
@@ -64,8 +59,6 @@ const selectComponent = () =>{
     listSelectOne.appendChild(opcComp)
   })
 }
-
-*/
 
 // 1) precioMaquina(componentes)
 
@@ -101,37 +94,18 @@ console.log(`El componente ${component} fue vendido ${componentsSoldCount(compon
 
 // 3) vendedoraDelMes(mes, anio)
 
-const sellerOfTheMonth = (month, year) => {
-  let countSeller = []
-  let sellerName
-  local.sellers.forEach(e => {
-    local.sales.filter(i => {
-      if(year === i.date.getFullYear() && month === i.date.getMonth() && e === i.sellerName){
-        countSeller.push(machinePrice(i.components))
-        let countMaxSeller = Math.max.apply(null, countSeller)
-        if(machinePrice(i.components) === countMaxSeller){
-          sellerName = e
-        }
-      }
-    })
-  })
-  return sellerName
-}
-console.log(`La vendedora del mes es ${sellerOfTheMonth(1, 2019)}`)
-
 
 // 4) ventas de un mes - devuelve el valor total en plata
 // RECORDAR mejorar este codigo - con un for each quizas
-const salesMonth = (month, year, data = local.sales) => {
-  let list = []
-  data.forEach(e => {
-     if (year === e.date.getFullYear() && month === e.date.getMonth() + 1) {
-        list.push(machinePrice(e.components))
-     }
-  })
-  let total = list.length ? list.reduce((a, b) => a + b) : 0
-  return total
- }
+const salesMonth = (month, year) => {
+let salesMonth = 0;
+for (let i = 0; i < local.sales.length; i++) {
+    if ((month == (local.sales[i].date.getMonth() + 1)) && (year == local.sales[i].date.getFullYear())) {
+        salesMonth += machinePrice(local.sales[i].components);
+    }
+}
+return salesMonth
+}
 
 console.log(salesMonth(1, 2019))
 console.log(`La suma de las ventas del mes dan ARS $${salesMonth(1,2019)} `)
@@ -147,7 +121,7 @@ const salesPerSellerOrOffice = (param) => {
     }
   })
   return sellerOrOffice
- // console.log(sellerOrOffice)
+ //console.log(sellerOrOffice)
 }
 
 salesPerSellerOrOffice("Caballito")
@@ -155,23 +129,24 @@ console.log('Funcion ventas por sucursal y vendedora' , salesPerSellerOrOffice('
 
 // 6) componenteMasVendido()
 
+// RECORDAR cambiar los nombres
 const mostSoldComponent = () => {
-  let componentSold = [] 
-  local.prices.map(({component}) => {
-   let compObj = {componentString: component, total: componentsSoldCount(component)}
-   componentSold.push(compObj)
-  })
-  
-  let aux = Math.max(...componentSold.map(({total}) => total))
-  let finalComponent ;
-  componentSold.map(({componentString, total}) =>{
-   if (aux === total) finalComponent = componentString
-  }) 
-  
-  console.log(`El componente más vendido es ${finalComponent}`)
-  }
-  
-  mostSoldComponent() 
+let componentSold = [] 
+local.prices.map(({component}) => {
+ let algo = {componente: component, total: componentsSoldCount(component)}
+ componentSold.push(algo)
+})
+
+let aux = Math.max(...componentSold.map(({total}) => total))
+let componentefinal ;
+componentSold.map(({componente,total}) =>{
+ if (aux === total) componentefinal = componente
+}) 
+
+console.log(componentefinal)
+}
+
+mostSoldComponent() 
 
 // 7) huboVentas(mes, anio)
 
@@ -183,80 +158,46 @@ console.log('hubo ventas?:' , wereThereSales(3, 2019));
 
 // 9) sucursalDelMes(mes, anio)
 
-const bestOfficeMonth = (year, month) => {
-  let counterOffice = []
-  let officeName
-  local.offices.forEach(e => {
-    local.sales.filter(j => {
-      if(year === j.date.getFullYear() && month === j.date.getMonth() && e === j.office){
-        counterOffice.push(machinePrice(j.components))
-        let countMaxOffice = Math.max.apply(null, counterOffice)
-        // el math max toma dos parametros y busca el mayor
-        if(machinePrice(j.components) === countMaxOffice){
-          officeName = e
-        }
-      }
-    })
-  })
-  return officeName
-}
-
-console.log(`La oficina que más generó ganancias este mes fue la oficina de ${bestOfficeMonth(2019, 1)}`)
-
 // 10) render por mes: Muestra una lista ordenada del importe total vendido por cada mes/año
-
-const renderPerMonth = () => {
+// mejorar
+const renderPorMes = () => {
     
-let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-let monthsNum= [1,2,3,4,5,6,7,8,9,10,11,12]
-let perMonth = 0 
-for (let i= 0; i< months.length; i++) {
+let meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+let mesesNum= [1,2,3,4,5,6,7,8,9,10,11,12]
+let porMes= 0 
+
+for (let i= 0; i< meses.length; i++) {
   
-  perMonth = (`Total de ${months[i]} : $ ${salesMonth(monthsNum[i], 2019)}`);
+   let porMes= console.log('Total de '+ meses[i] + ': ' + salesMonth(mesesNum[i], 2019));
 }
- return perMonth  
+  return porMes   
   
 }
 
-renderPerMonth()
-
-//console.log(renderPerMonth())
-
+renderPorMes()
 
 // 11) renderPorSucursal()
 
-const renderPerOffice = () => {
-  let saleOffice
-  local.offices.forEach(office => {
-    saleOffice = salesPerSellerOrOffice(office)
-    console.log(`El importe total vendido en la sucursal de ${office} es: $${saleOffice}`)
-  })
-  return saleOffice
-}
+// 12) render()
 
-renderPerOffice()
 
-// 12) render total
+// SE SUPONE QUE ES EL BOTON PERO NO FUNCA (ONCLICK)
+// const calcular = () =>{
+//  let printAccion  = []
+//   printAccion.push(local[listSelectOne.value])
+//   printAccion.push(local[selectSeller.value])
+//   printAccion.push(local[selectSucur.value])
+//   printAccion.push(local[selectMonth.value])
+// printUl = document.getElementById('printUl')
+// printUl.innerHTML =''
 
-// vendedora que generó más ingresos (para este render)
-const theBestSeller = () =>{
-  let maxCount = 0
-  let bestSeller = ''
-  local.sellers.map(seller =>{
-      let count = 0
-    local.sales.map(e=>{
-      if(e.sellerName === seller){
-        count = count + machinePrice(e.components)
-      }
-    })
-    if(count > maxCount){
-      maxCount = count
-      bestSeller = seller
-    }
-  })
-  
-  return bestSeller
-  
-}
-
-console.log(theBestSeller())
+// printSelect();
+// }
+// // Imprime los selects
+// const printSelect = () =>{
+//   printAccion.map(function(item){
+//     let li = document.createElement('li')
+//     li.innerText = item.local
+//     printUl.appendChild(li)
+//   })
+// }
