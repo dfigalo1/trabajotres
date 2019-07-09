@@ -96,18 +96,37 @@ console.log(`El componente ${component} fue vendido ${componentsSoldCount(compon
 
 // 3) vendedoraDelMes(mes, anio)
 
+const sellerOfTheMonth = (month, year) => {
+  let countSeller = []
+  let sellerName
+  local.sellers.forEach(e => {
+    local.sales.filter(i => {
+      if(year === i.date.getFullYear() && month === i.date.getMonth() && e === i.sellerName){
+        countSeller.push(machinePrice(i.components))
+        let countMaxSeller = Math.max.apply(null, countSeller)
+        if(machinePrice(i.components) === countMaxSeller){
+          sellerName = e
+        }
+      }
+    })
+  })
+  return sellerName
+}
+console.log(`La vendedora del mes es ${sellerOfTheMonth(1, 2019)}`)
 
 // 4) ventas de un mes - devuelve el valor total en plata
 // RECORDAR mejorar este codigo - con un for each quizas
-const salesMonth = (month, year) => {
-let salesMonth = 0;
-for (let i = 0; i < local.sales.length; i++) {
-    if ((month == (local.sales[i].date.getMonth() + 1)) && (year == local.sales[i].date.getFullYear())) {
-        salesMonth += machinePrice(local.sales[i].components);
-    }
-}
-return salesMonth
-}
+
+const salesMonth = (month, year, data = local.sales) => {
+  let list = []
+  data.forEach(e => {
+     if (year === e.date.getFullYear() && month === e.date.getMonth() + 1) {
+        list.push(machinePrice(e.components))
+     }
+  })
+  let total = list.length ? list.reduce((a, b) => a + b) : 0
+  return total
+ }
 
 console.log(salesMonth(1, 2019))
 console.log(`La suma de las ventas del mes dan ARS $${salesMonth(1,2019)} `)
@@ -165,23 +184,81 @@ console.log('hubo ventas?:' , wereThereSales(3, 2019));
 
 // 9) sucursalDelMes(mes, anio)
 
+const bestOfficeMonth = (year, month) => {
+  let counterOffice = []
+  let officeName
+  local.offices.forEach(e => {
+    local.sales.filter(j => {
+      if(year === j.date.getFullYear() && month === j.date.getMonth() && e === j.office){
+        counterOffice.push(machinePrice(j.components))
+        let countMaxOffice = Math.max.apply(null, counterOffice)
+        // el math max toma dos parametros y busca el mayor
+        if(machinePrice(j.components) === countMaxOffice){
+          officeName = e
+        }
+      }
+    })
+  })
+  return officeName
+}
+
+console.log(`La oficina que más generó ganancias este mes fue la oficina de ${bestOfficeMonth(2019, 1)}`)
+
 // 10) render por mes: Muestra una lista ordenada del importe total vendido por cada mes/año
-// mejorar
-const renderPorMes = () => {
+
+const renderPerMonth = () => {
     
-let meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-let mesesNum= [1,2,3,4,5,6,7,8,9,10,11,12]
-let porMes= 0 
-
-for (let i= 0; i< meses.length; i++) {
+  let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+  let monthsNum= [1,2,3,4,5,6,7,8,9,10,11,12]
+  let perMonth = 0 
+  for (let i= 0; i< months.length; i++) {
+    
+    perMonth = (`Total de ${months[i]} : $ ${salesMonth(monthsNum[i], 2019)}`);
+  }
+   return perMonth}  
+  renderPerMonth()
   
-   let porMes= console.log('Total de '+ meses[i] + ': ' + salesMonth(mesesNum[i], 2019));
+  console.log(renderPerMonth())
+
+// 11) renderPorSucursal()
+
+const renderPerOffice = () => {
+  let saleOffice
+  local.offices.forEach(office => {
+    saleOffice = salesPerSellerOrOffice(office)
+    console.log(`El importe total vendido en la sucursal de ${office} es: $${saleOffice}`)
+  })
+  return saleOffice
 }
-  return porMes   
+
+renderPerOffice()
+
+
+// 12) render total
+
+// vendedora que generó más ingresos (para este render)
+const theBestSeller = () =>{
+  let maxCount = 0
+  let bestSeller = ''
+  local.sellers.map(seller =>{
+      let count = 0
+    local.sales.map(e=>{
+      if(e.sellerName === seller){
+        count = count + machinePrice(e.components)
+      }
+    })
+    if(count > maxCount){
+      maxCount = count
+      bestSeller = seller
+    }
+  })
+  
+  return bestSeller
   
 }
 
-renderPorMes()
+console.log(theBestSeller())
+
 
 // createLi
 const createLi = (lista,id) => {
