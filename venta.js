@@ -1,9 +1,3 @@
-
-// // Variables de cada select y creacion de UL
-//  var listSelectOne,selectSeller,selectSucur,selectMonth,printUl
-// // variable que guarda los resultados a imprimir
-// var printAccion = []
-
 var local = {
   sellers: ["Ada", "Grace", "Hedy", "Sheryl"],
 
@@ -46,18 +40,26 @@ var local = {
   };
 
 
-// SELECT DE COMPONENTES (1)
-const selectComponent = () =>{
-  let listSelectOne = document.getElementById('selectOne')
-  listSelectOne.innerHTML = '' // lo vacio para que no se vuelva a imprimir
-  let firstOption = document.createElement('option')
-  firstOption.innerText = 'Elija un componente'
-  listSelectOne.appendChild(firstOption)
-  local.prices.forEach(function(e){
-    let opcComp = document.createElement('option')
-    opcComp.innerText = e.component
-    listSelectOne.appendChild(opcComp)
-  })
+
+ // arrayComponentes
+ const componentArray = local.prices.map(({ component }) => component)
+
+  //obtener info del option
+  const createSale = () => {
+   let sale = { date: new Date(), sellerName: "", components:[], office: "", machinePrice: "" }
+   let agent = document.getElementById("agent")
+   let component = document.getElementById("component")
+   let saleStore = document.getElementById("store")
+   sale.sellerName = agent.value 
+   agent.value = "0"
+   sale.components.push(component.value)
+   component.value = "0"
+   sale.office = saleStore.value
+   saleStore.value = "0"
+   sale.machinePrice = machinePrice(sale.components)
+   if (sale.sellerName && sale.components && sale.office != "0" && ["0"]) 
+   {local.sales.push(sale) && createTr(local.sales)} else 
+   {alert("Selecciona tu opcion para continuar")}
 }
 
 // 1) precioMaquina(componentes)
@@ -127,6 +129,11 @@ const salesPerSellerOrOffice = (param) => {
 salesPerSellerOrOffice("Caballito")
 console.log('Funcion ventas por sucursal y vendedora' , salesPerSellerOrOffice('Grace'))
 
+let toggleFunction = () => {
+  let element = document.getElementById("toggle");
+  element.classList.toggle("togle");
+}
+
 // 6) componenteMasVendido()
 
 // RECORDAR cambiar los nombres
@@ -176,28 +183,67 @@ for (let i= 0; i< meses.length; i++) {
 
 renderPorMes()
 
-// 11) renderPorSucursal()
+// createLi
+const createLi = (lista,id) => {
+let sucursalUl = document.getElementById(id)
+lista.forEach (m => 
+{let li = document.createElement('li')
+li.innerText = `${m.month}: ${m.salesMonth} ventas`
+sucursalUl.appendChild(li)
+})
+}
 
-// 12) render()
+// createOption
+const createOption = (list,id) => { // list variable para varias cosas
+let select = document.getElementById(id)
+list.forEach(e => {
+let option = document.createElement('option')
+option.innerText = e;
+select.appendChild(option)
+return option
+})
+}
 
+const initialize = () => {
+printInitialData()
+ }
 
-// SE SUPONE QUE ES EL BOTON PERO NO FUNCA (ONCLICK)
-// const calcular = () =>{
-//  let printAccion  = []
-//   printAccion.push(local[listSelectOne.value])
-//   printAccion.push(local[selectSeller.value])
-//   printAccion.push(local[selectSucur.value])
-//   printAccion.push(local[selectMonth.value])
-// printUl = document.getElementById('printUl')
-// printUl.innerHTML =''
+const printInitialData = () => {
+// createLi(sucursalRender(),"sucursalRender")
+createLi(renderPorMes(),"renderPorMes")
+createOption(local.sellers,"agent")
+createOption(local.offices,"store")
+createOption(componentArray,"components")  
+createTr(local.sales)
+award()
+}
 
-// printSelect();
-// }
-// // Imprime los selects
-// const printSelect = () =>{
-//   printAccion.map(function(item){
-//     let li = document.createElement('li')
-//     li.innerText = item.local
-//     printUl.appendChild(li)
-//   })
-// }
+let myFunction = () => {
+let element = document.getElementById("options");
+element.classList.toggle("togle");
+}
+
+// createTrYTd
+const createTr = (list) => {
+let container = document.getElementById("container")
+container.innerHTML = ''
+list.forEach(sale => {
+let tr = document.createElement('tr')
+Object.keys(sale).forEach( e=> {
+let td = document.createElement('td')
+if (e === 'date'){
+td.innerText = `${sale[e].getFullYear()},${sale[e].getMonth()+1},${sale[e].getDate()}`
+} else {
+td.innerText =  sale[e]
+}
+tr.appendChild(td)
+})
+container.appendChild(tr)
+})
+}
+
+//componentes mas vendidos
+const award = () => { 
+let h4 = document.getElementById('mostSoldComponent')
+h4.innerText = mostSoldComponent();
+}

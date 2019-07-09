@@ -15,47 +15,55 @@
         <div class="background"> </div>
     </header>
 </head>
-
-<body onload="selectComponent()">
-
-
-
-
-
+<body onload="initialize()">
     <h1> Local de ventas de PCs</h1>
-    <table width="80%" align="center">
-        <thead</thead> <tbody>
-            <table>
-                <tr>
-                    <th>FECHA </th>
-                    <th>COMPONENTE</th>
-                    <th>VENDEDORA</th>
-                    <th>SUCURSAL</th>
-                    <th>TOTAL</th>
-                </tr>
 
-                <tr>
-                    <td><select id="selectTwo"> </select></td>
-                    <td><select id="selectOne"> </select></td>
-                    <td><select id="selectThree"> </select></td>
-                    <td><select id="selectFour"></select></td>
-                    <td><button type="button" id="generar" onclick="generar()">Generar</button></td>
-                </tr>
-                <tr>
-                    <td>fecha</td>
-                    <td>componente</td>
-                    <td>vendedora</td>
-                    <td>sucursal</td>
-                    <td>total</td>
-                </tr>
-            </table>
+        <div class="sales">
+            <h3>V e n t a s</h3>
+            <button onclick="myFunction()" class="Btn">+</button>
+            </div> 
+        </div> 
 
-
-            <button type="button" id="nuevaVenta" onclick="nuevaVenta()">Nueva venta</button>
-            <button type="button" id="Imprimir" onclick="imprimir()">Imprimir</button>
-            </tbody>
-    </table>
-
+        <div class="options togle" id="options">
+          <select name="agent" id="agent">
+            <option value="0" disabled selected>Vendedora</option>
+          </select>
+          <select name="component" id="component">
+            <option value="0" disabled selected>Componente</option>
+          </select>
+          <select name="store" id="store">
+            <option value="0" disabled selected>Local</option>
+          </select>
+          <button class="optionButton" onclick="createSale()">Enviar</button>
+        </div>
+          <table class="dataTable">
+        <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Vendedora</th> 
+          <th>Componentes</th>
+          <th>Local</th> 
+          <th>Precio total</th>
+        </tr>
+        </thead>
+        <tbody id="container">
+        </tbody>
+      </table>
+      <h4 id="mostSoldComponent"></h4>
+      <div class="report">
+        <div class="head">
+        <p class="reportTitle">Reporte</p>
+        <button onclick="toggleFunction()" class="Btn">+</button>
+        </div>
+        <div class="reportText togle" id="toggle">
+        <ul id="sucursalRender">
+        <li>Ventas por sucursal:</li>
+        </ul> 
+        <ul id="renderPorMes">
+          <li>Ventas por mes:</li>
+          </ul> 
+        </div>
+    </div> 
 
     <footer class="footer">
         <nav>
@@ -71,3 +79,7 @@
 </body>
 
 </html>
+
+
+
+
