@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <script src="venta.js" type="text/javascript"></script>
+    <title>PC STORE || VENTAS </title>
+    <header>
+        <div class="background"> </div>
+    </header>
+</head>
+<body onload="initialize()">
+    <h1> Local de ventas de PCs</h1>
+
+        <div class="sales">
+            <h3>V e n t a s</h3>
+            <button onclick="myFunction()" class="Btn">+</button>
+            </div> 
+        </div> 
+
+        <div class="options togle" id="options">
+          <select name="agent" id="agent">
+            <option value="0" disabled selected>Vendedora</option>
+          </select>
+          <select name="component" id="component">
+            <option value="0" disabled selected>Componente</option>
+          </select>
+          <select name="store" id="store">
+            <option value="0" disabled selected>Local</option>
+          </select>
+          <button class="optionButton" onclick="createSale()">Enviar</button>
+        </div>
+          <table class="dataTable">
+        <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Vendedora</th> 
+          <th>Componentes</th>
+          <th>Local</th> 
+          <th>Precio total</th>
+        </tr>
+        </thead>
+        <tbody id="container">
+        </tbody>
+      </table>
+      <h4 id="mostSoldComponent"></h4>
+      <div class="report">
+        <div class="head">
+        <p class="reportTitle">Reporte</p>
+        <button onclick="toggleFunction()" class="Btn">+</button>
+        </div>
+        <div class="reportText togle" id="toggle">
+        <ul id="sucursalRender">
+        <li>Ventas por sucursal:</li>
+        </ul> 
+        <ul id="renderPorMes">
+          <li>Ventas por mes:</li>
+          </ul> 
+        </div>
+    </div> 
+
+    <footer class="footer">
+        <nav>
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i> FACEBOOK</a>
+            <a href="https://twitter.com/"><i class="fab fa-twitter"></i> TWITTER</a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i> INSTAGRAM</a>
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i> FACEBOOK</a>
+            <a href="https://twitter.com/"><i class="fab fa-twitter"></i> TWITTER</a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i> INSTAGRAM</a>
+        </nav>
+        <hr>
+    </footer>
+</body>
+
+</html>
+
+
+
+
