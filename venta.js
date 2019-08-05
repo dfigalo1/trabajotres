@@ -68,20 +68,21 @@ const machinePrice = sale => {
 let machinePrice = 0
 sale.forEach(e => {
   const componentName = local.prices.find(({component}) => e === component) 
+  // se puede resumir con la suma implicita: 
+  // machinePrice *= componentName.price
   machinePrice = machinePrice + componentName.price
 })
 return machinePrice
 }
-
+//No debemos dejar comentarios en le codigo productivo que no cumpla con una función. 
 //console.log(machinePrice(["Monitor ASC 543","Motherboard ASUS 1200" ]))
-
 
 let product = ["Monitor ASC 543" ,  "Motherboard ASUS 1200"]
 console.log(`El precio total de ${product} es de ARS ${machinePrice(product)}`)
 
-
 // 2) cantidadVentasComponente(componente)
 
+// tener en cuenta sumarle identación a las funciones
 const componentsSoldCount = (e) => {
 let count = 0 
 local.sales.forEach(sale => { 
@@ -163,7 +164,7 @@ local.prices.map(({component}) => {
  componentSold.push(algo)
 })
 
-let aux = Math.max(...componentSold.map(({total}) => total))
+let aux = Math.max(...componentSold.map(({total}) => total)) // me encantó
 let componentefinal ;
 componentSold.map(({componente,total}) =>{
  if (aux === total) componentefinal = componente
@@ -207,9 +208,9 @@ console.log(`La oficina que más generó ganancias este mes fue la oficina de ${
 // 10) render por mes: Muestra una lista ordenada del importe total vendido por cada mes/año
 
 const renderPerMonth = () => {
-    
+
   let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-  let monthsNum= [1,2,3,4,5,6,7,8,9,10,11,12]
+  let monthsNum= [1,2,3,4,5,6,7,8,9,10,11,12] // esta lista se podria evitar contando con los indices de la anterior
   let perMonth = 0 
   for (let i= 0; i< months.length; i++) {
     
